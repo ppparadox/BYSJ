@@ -1,11 +1,10 @@
-// main.js
+
 import React from 'react';
 import {render} from 'react-dom';
-
-
+import Test from './components/test.js';
 
 
 render(<div >
-		its a test !
+	<Test/>
 	</div>
 	,document.getElementById('root'));
