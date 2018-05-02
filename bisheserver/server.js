@@ -1,4 +1,9 @@
 var mysql      = require('mysql');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var multer = require('multer'); 
+
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'wjm',
@@ -8,22 +13,37 @@ var connection = mysql.createConnection({
 
 
 
-var express = require('express');
-var app = express();
+
 
 app.all('*', function(req, res, next) {  
     res.header("Access-Control-Allow-Origin", "*");  
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");  
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, accept, origin, Content-Type");  
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
     res.header("X-Powered-By",' 3.2.1')  
     res.header("Content-Type", "application/json;charset=utf-8");  
     next();  
 });  //支持跨域
+
+app.use(bodyParser.json()); // for parsing application/json
+
  
+
 app.get('/', function (req, res) {
-	console.log('来了一次访问');
-   res.send('这是我回复的信息');
+  console.log('来了一次访问');
+   res.json({login:'访问答复'});
 })
+
+
+app.post('/login', function (req, res) {
+  console.log(req.body);
+   res.json(req.body);
+})
+
+app.post('/register', function (req, res) {
+  console.log(req.body);
+   res.json(req.body);
+})
+
  
 var server = app.listen(8089, function () {
  
@@ -58,5 +78,6 @@ var server = app.listen(8089, function () {
 // });
 
 
+// connection.end();
 
 

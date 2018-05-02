@@ -2,6 +2,23 @@
 import React,{Component} from 'react'
 import {render} from 'react-dom';
 import fetch from 'isomorphic-fetch'
+import { Button } from 'antd';
+import{Router,HashRouter,Match,Route,Link,hashHistory,IndexLink} from 'react-router-dom'
+import Loginform from './loginform.js'
+import Registerform from './registerform.js'
+
+
+
+
+
+
+const List2 = () => (
+	<div>
+	3333555
+	</div>
+	)
+
+
  
 class Test extends Component{
 	constructor(props){
@@ -11,31 +28,19 @@ class Test extends Component{
 
 	}
 
-	componentDidMount(){
-	
-let URL = 'http://127.0.0.1:8089';
-fetch(URL, {
-  method: 'get',
-  mode: 'cors'
-}).then(response => response.text())
-  .then(dataaaa => alert(dataaaa));
-  fetch(URL, {
-  method: 'get',
-  mode: 'cors'
-}).then(response => response.text())
-  .then(dataaaa => alert(dataaaa));
-
-
-
-}
-
 
 
 
 	render(){
 		return(
 			<div>
-			1123123123
+		
+			<HashRouter history={hashHistory}>
+			<div>
+			<Route  exact path="/" component={Loginform} />
+			<Route  path="/register" component={Registerform} />
+			</div>
+			</HashRouter>
 			</div>
 
 			);
