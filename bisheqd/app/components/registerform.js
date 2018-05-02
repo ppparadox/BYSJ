@@ -11,7 +11,7 @@ class Registerform extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			username:'33',
+			account:'33',
 			password:'444',
 			name:'',
 			sex:'',
@@ -38,14 +38,8 @@ fetch(URL, {
 			this.state
 		)
 
-}).then(response => response.json())
-  .then(data => alert(
-  	"登录名为："+data.username+
-  	"密码为："+data.password+
-  	"姓名为："+data.name+
-  	"性别为："+data.sex+
-  	"权限为："+data.isadmin
-
+}).then(response => response.text())
+  .then(data => alert(data
   	));
 
 }
@@ -71,11 +65,11 @@ fetch(URL, {
  <p>姓名: <Input   onChange={e=>this.setState({name:e.target.value})} /></p>
   <p>性别: <Input   onChange={e=>this.setState({sex:e.target.value})} /></p>
    <p>权限: <Input   onChange={e=>this.setState({isadmin:e.target.value})} /></p>
-  <p>帐号: <Input   onChange={e=>this.setState({username:e.target.value})} /></p>
+  <p>帐号: <Input   onChange={e=>this.setState({account:e.target.value})} /></p>
   <p>密码: <Input   onChange={e=>this.setState({password:e.target.value})} /></p>
 
 
-   <Button type="primary"   onClick={this.register} style={{marginLeft:'10%',marginTop:'5%'}}>登录</Button>
+   <Button type="primary"   onClick={this.register} style={{marginLeft:'10%',marginTop:'5%'}}>注册</Button>
 
 	<Link to='/'>
 		<Button  style={{positionLeft:'absolute',margin:'10%'}}>返回登录</Button>

@@ -11,12 +11,12 @@ class Loginform extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			username:'33',
-			password:'444'
+			account:'',
+			password:''
 
 		};
 
-	this.login = this.login.bind(this);
+		this.login = this.login.bind(this);
 
 
 	}
@@ -24,52 +24,62 @@ class Loginform extends Component{
 
 
 	login(){
- let URL = 'http://127.0.0.1:8089/login';
-fetch(URL, {
-  method: 'post',
-  mode: 'cors',
-   headers: {
-    'Content-Type': 'application/json;charset=utf-8'
-            },
-  body: JSON.stringify(
-			this.state
-		)
+		if(this.state.account==''||this.state.password=='')
+			alert('请输入帐号密码');
+		else 
 
-}).then(response => response.json())
-  .then(data => alert("登录名为："+data.username+"密码为："+data.password));
+		{
+			let URL = 'http://127.0.0.1:8089/login';
+			fetch(URL, {
+				method: 'post',
+				mode: 'cors',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				},
+				body: JSON.stringify(
+					this.state
+					)
 
-}
+			}).then(response => response.text())
+			.then(data => alert(data));
+
+		}
+
+	}
+
+
+
 
 	componentDidMount(){
-	
-
-	
-}
 
 
-	
+
+	}
+
+
+
 
 
 
 
 	render(){
 		return(
-		<div style={{position:'absolute',marginLeft:'40%',marginTop:'5%'}}>
-	   <form  action="http://127.0.0.1:8089" method="get">
+			<div style={{position:'absolute',marginLeft:'40%',marginTop:'5%'}}>
+			<form  action="http://127.0.0.1:8089" method="get">
 
-	   <h1>React SPA 登录界面</h1>
+			<h1>React SPA 登录界面</h1>
 
-  <p>帐号: <Input   onChange={e=>this.setState({username:e.target.value})} /></p>
-  <p>密码: <Input   onChange={e=>this.setState({password:e.target.value})} /></p>
+			<p>帐号: <Input   onChange={e=>this.setState({account:e.target.value})} /></p>
+			<p>密码: <Input   onChange={e=>this.setState({password:e.target.value})} /></p>
 
 
-   <Button type="primary"   onClick={this.login} style={{marginLeft:'10%',marginTop:'5%'}}>登录</Button>
+			<Button type="primary"   onClick={this.login} style={{marginLeft:'10%',marginTop:'5%'}}>登录</Button>
 
-	<Link to='/register'>
-		<Button  style={{positionLeft:'absolute',margin:'10%'}}>注册地址</Button>
-		</Link>
-	</form>
-	</div>
+			<Link to='/register'>
+			<Button  style={{positionLeft:'absolute',margin:'10%'}}>注册地址</Button>
+			</Link>
+			</form>
+			</div>
 
 			);
 	}
@@ -77,4 +87,4 @@ fetch(URL, {
 
 }
 
-	export default Loginform
+export default Loginform

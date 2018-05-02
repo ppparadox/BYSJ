@@ -3,13 +3,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer'); 
+var sss=require("./pool.js");
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'wjm',
-  password : '111111',
-  database : 'test'
-});
 
 
 
@@ -35,13 +30,72 @@ app.get('/', function (req, res) {
 
 
 app.post('/login', function (req, res) {
-  console.log(req.body);
-   res.json(req.body);
+
+  const isquerysql="SELECT * FROM USER WHERE account='"+req.body.account+"' and password='"+req.body.password+"'";
+  sss(isquerysql,function (err,vals,fields) {
+     if(err){
+          console.log('[SELECT ERROR] - ',err.message);
+          return;
+        }
+
+        else 
+          {
+            if(vals.length==0)        
+          res.send('无该注册帐号');
+          else
+            res.send('登陆成功');
+
+        }
+  });
+
+
 })
 
 app.post('/register', function (req, res) {
-  console.log(req.body);
-   res.json(req.body);
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
+
+
+
+var values = [req.body.name,req.body.sex,req.body.account,req.body.password,req.body.isadmin];
+var insertsql = "INSERT INTO user(name,sex,account,password,isadmin) VALUES (?,?,?,?,?)";
+var querysql="SELECT * FROM USER WHERE account='"+req.body.account+"'";
+
+
+sss(querysql,function (err,vals,fields) {
+        if(err){
+          console.log('[SELECT ERROR] - ',err.message);
+          return;
+        }
+        else 
+          {if(vals.length==0)
+         {
+          sss(insertsql,values,function (err, rows, fields) {
+            if(err){
+          return;
+        }
+        else res.send('注册成功');
+ 
+});
+
+         }
+         else   { res.send('改用户已经注册'); }
+         }
+
+      });
+
+
+
+
+
+
+  
+   
 })
 
  
