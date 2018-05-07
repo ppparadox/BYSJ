@@ -41,7 +41,17 @@ class Loginform extends Component{
 					)
 
 			}).then(response => response.text())
-			.then(data => alert(data));
+			.then(
+				data => {
+					if(data=='无该注册帐号')
+						alert(data);
+						else 
+							{alert(data);
+							this.props.history.push('./menu');
+							}
+
+				}
+				);
 
 		}
 

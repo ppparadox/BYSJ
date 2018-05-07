@@ -6,20 +6,10 @@ import { Button } from 'antd';
 import{Router,HashRouter,Match,Route,Link,hashHistory,IndexLink} from 'react-router-dom'
 import Loginform from './loginform.js'
 import Registerform from './registerform.js'
+import Menu from './menu.js'
+import Busadd from './busadd.js'
 
 
-
-
-
-
-const List2 = () => (
-	<div>
-	3333555
-	</div>
-	)
-
-
- 
 class Test extends Component{
 	constructor(props){
 		super(props);
@@ -27,8 +17,6 @@ class Test extends Component{
 			name:1333,};
 
 	}
-
-
 
 
 	render(){
@@ -39,6 +27,8 @@ class Test extends Component{
 			<div>
 			<Route  exact path="/" component={Loginform} />
 			<Route  path="/register" component={Registerform} />
+			<Route  path="/menu" component={Menu} />
+			<Route  path="/busadd" component={Busadd} />
 			</div>
 			</HashRouter>
 			</div>

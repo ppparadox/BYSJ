@@ -11,8 +11,8 @@ class Registerform extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			account:'33',
-			password:'444',
+			account:'',
+			password:'',
 			name:'',
 			sex:'',
 			isadmin:''
