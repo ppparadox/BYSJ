@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 })
 
 
-
+-
 
 
 // 用户登录模块
@@ -123,6 +123,39 @@ app.post('/busregister', function (req, res) {
   });
 
 })
+
+
+// 公交详情添加模块
+
+app.post('/adddetail', function (req, res) {
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'wjm',
+    password : '111111',
+    database : 'bysj'
+  });
+
+
+  var values = [req.body.routeid,req.body.placename,req.body.index,req.body.price];
+  console.log(values);
+  var insertsql5 = "INSERT INTO BUSPLACE(routeid,placename,stopindex,price) VALUES (?,?,?,?)";
+
+        sss(insertsql5,values,function (err, rows, fields) {
+          if(err){
+            return;
+          }
+          else res.send('公交站点添加成功');
+        });
+
+
+})
+
+
+
+
+
+
+
 var server = app.listen(8089, function () {
   var host = server.address().address
   var port = server.address().port 
