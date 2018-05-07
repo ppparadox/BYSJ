@@ -47,7 +47,6 @@ fetch(URL, {
 	componentDidMount(){
 	
 
-	
 }
 
 

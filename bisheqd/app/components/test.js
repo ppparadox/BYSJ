@@ -8,6 +8,7 @@ import Loginform from './loginform.js'
 import Registerform from './registerform.js'
 import Menu from './menu.js'
 import Busadd from './busadd.js'
+import Detail from './detail.js'
 
 
 class Test extends Component{
@@ -29,6 +30,7 @@ class Test extends Component{
 			<Route  path="/register" component={Registerform} />
 			<Route  path="/menu" component={Menu} />
 			<Route  path="/busadd" component={Busadd} />
+			<Route  path="/detail" component={Detail} />
 			</div>
 			</HashRouter>
 			</div>

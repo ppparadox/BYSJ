@@ -97,10 +97,13 @@ app.post('/busregister', function (req, res) {
     password : '111111',
     database : 'bysj'
   });
-  var values = [req.body.name,req.body.sex,req.body.account,req.body.password,req.body.isadmin];
-  var insertsql = "INSERT INTO user(name,sex,account,password,isadmin) VALUES (?,?,?,?,?)";
-  var querysql="SELECT * FROM USER WHERE account='"+req.body.account+"'";
-  sss(querysql,function (err,vals,fields) {
+
+
+
+  var values = [req.body.routeid,req.body.stopnum,req.body.timecost,req.body.first_time,req.body.last_time,req.body.wfstate];
+  var insertsql3 = "INSERT INTO busroute(routeid,stopnum,timecost,first_time,last_time,wfstate) VALUES (?,?,?,?,?,?)";
+  var querysql3="SELECT * FROM BUSROUTE WHERE routeid='"+req.body.routeid+"'";
+  sss(querysql3,function (err,vals,fields) {
     if(err){
       console.log('[SELECT ERROR] - ',err.message);
       return;
@@ -108,14 +111,14 @@ app.post('/busregister', function (req, res) {
     else 
       {if(vals.length==0)
        {
-        sss(insertsql,values,function (err, rows, fields) {
+        sss(insertsql3,values,function (err, rows, fields) {
           if(err){
             return;
           }
-          else res.send('注册成功');
+          else res.send('公交路线添加成功');
         });
       }
-      else   { res.send('改用户已经注册'); }
+      else   { res.send('该路线已经添加'); }
     }
   });
 
