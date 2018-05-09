@@ -1,0 +1,3 @@
+rootProject.name = 'bisheapp'
+
+include ':app'
