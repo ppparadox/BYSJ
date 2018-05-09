@@ -15,7 +15,7 @@ class Detail extends Component{
 			index:'1',
 			placename:'3',
 			price:'3'
-	
+
 		};
 
 		this.continue=this.continue.bind(this);
@@ -40,32 +40,23 @@ class Detail extends Component{
 
 		}).then(response => response.text())
 		.then(data => {
-			dindex++;
-			this.setState({index:dindex});
+			if(dindex<=this.props.location.state.stopnum)
+			{
+				dindex++;
+				this.setState({index:dindex});
+				
 
+			}
+			else alert('已达到最大站点数量');
 
-
-			alert(data)}
+		}
 			);
 
 	}
 
 
 	complete(){
-		let URL = 'http://127.0.0.1:8089/busregister';
-		fetch(URL, {
-			method: 'post',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json;charset=utf-8'
-			},
-			body: JSON.stringify(
-				this.state
-				)
-
-		}).then(response => response.text())
-		.then(data => alert(data
-			));
+		alert('恭喜你，管理员！你已成功完成添加该公交车路线')
 
 	}
 
@@ -73,10 +64,10 @@ class Detail extends Component{
 
 
 	componentDidMount(){
-	
+
 		
-			this.setState({routeid:this.props.location.state.routeid});
-}
+		this.setState({routeid:this.props.location.state.routeid});
+	}
 
 
 

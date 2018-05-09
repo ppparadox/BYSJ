@@ -46,7 +46,7 @@ app.post('/login', function (req, res) {
     if(vals.length==0)        
       res.send('无该注册帐号');
     else
-      res.send('登陆成功');
+      res.send('欢迎您，管理员！');
 
   }
 });

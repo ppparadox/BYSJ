@@ -41,7 +41,7 @@ fetch(URL, {
 }).then(response => response.text())
   .then(data =>{alert(data)
 
-this.props.history.push({pathname:'./detail',state:{routeid:this.state.routeid}});
+this.props.history.push({pathname:'./detail',state:{routeid:this.state.routeid,stopnum:this.state.stopnum}});
 
 
   }
