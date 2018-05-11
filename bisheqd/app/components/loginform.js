@@ -29,7 +29,7 @@ class Loginform extends Component{
 		else 
 
 		{
-			let URL = 'http://127.0.0.1:8089/login';
+			let URL = 'http://10.2.10.32:8089/login';
 			fetch(URL, {
 				method: 'post',
 				mode: 'cors',
@@ -74,8 +74,8 @@ class Loginform extends Component{
 
 	render(){
 		return(
-			<div style={{position:'absolute',marginLeft:'40%',marginTop:'5%'}}>
-			<form  action="http://127.0.0.1:8089" method="get">
+			<div style={{position:'absolute',left:'0',right:'0',margin:'auto',width:'300px',marginTop:'50px'}}>
+			<form  action="http://10.2.10.32:8089" method="get">
 
 			<h1>React SPA 登录界面</h1>
 

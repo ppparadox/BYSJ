@@ -35,6 +35,7 @@ app.get('/', function (req, res) {
 // 用户登录模块
 app.post('/login', function (req, res) {
   const isquerysql="SELECT * FROM USER WHERE account='"+req.body.account+"' and password='"+req.body.password+"'";
+  console.log(req.body);
   sss(isquerysql,function (err,vals,fields) {
    if(err){
     console.log('[SELECT ERROR] - ',err.message);
@@ -43,7 +44,7 @@ app.post('/login', function (req, res) {
 
   else 
   {
-    if(vals.length==0)        
+    if(vals.length==0)    
       res.send('无该注册帐号');
     else
       res.send('欢迎您，管理员！');
@@ -152,12 +153,51 @@ app.post('/adddetail', function (req, res) {
 
 
 
+// 公交路线查询模块
+
+app.post('/routeidquery', function (req, res) {
+   var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'wjm',
+    password : '111111',
+    database : 'bysj'
+  });
+
+
+var querysql333="select placename,price,stopindex from busplace where routeid='"+req.body.routeid+"'";
+
+ sss(querysql333,function (err,vals,fields) {
+if(err){
+            return;
+          }
+          else 
+          {
+            var dataa=JSON.stringify(vals);
+          console.log(dataa);
+          res.send(dataa);
+
+          }
+});
+
+
+
+
+  
+
+
+      
+
+
+})
+
+
+
 
 
 
 
 var server = app.listen(8089, function () {
-  var host = server.address().address
+  var host = '10.2.10.32';
   var port = server.address().port 
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
 })
