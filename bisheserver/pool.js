@@ -4,7 +4,7 @@ var pool = mysql.createPool({
     user: 'wjm',
     password: '111111',
     database: 'bysj',
-    connectionLimit :'1000',
+    connectionLimit :'10000',
 });
 
 var sss=function(sql,val,callback){

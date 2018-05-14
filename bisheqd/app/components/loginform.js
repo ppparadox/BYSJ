@@ -29,7 +29,7 @@ class Loginform extends Component{
 		else 
 
 		{
-			let URL = 'http://10.2.10.32:8089/login';
+			let URL = 'http://127.0.0.1:8089/login';
 			fetch(URL, {
 				method: 'post',
 				mode: 'cors',
@@ -46,8 +46,10 @@ class Loginform extends Component{
 					if(data=='无该注册帐号')
 						alert(data);
 						else 
-							{alert(data);
-							this.props.history.push('./menu');
+							{alert('欢迎您，'+data);
+							this.props.history.push({pathname:'./menu',state:{isadmin:data}});
+
+		
 							}
 
 				}
@@ -66,21 +68,15 @@ class Loginform extends Component{
 
 	}
 
-
-
-
-
-
-
 	render(){
 		return(
-			<div style={{position:'absolute',left:'0',right:'0',margin:'auto',width:'300px',marginTop:'50px'}}>
-			<form  action="http://10.2.10.32:8089" method="get">
+			<div style={{position:'absolute',left:'0',right:'0',margin:'auto',width:'600px',marginTop:'50px'}}>
+			<form  action="http://172.20.10.10:8089" method="get">
 
-			<h1>React SPA 登录界面</h1>
+			<h1 style={{textAlign:'center-'}}>公交路线管理系统登录界面</h1>
 
-			<p>帐号: <Input   onChange={e=>this.setState({account:e.target.value})} /></p>
-			<p>密码: <Input   onChange={e=>this.setState({password:e.target.value})} /></p>
+			<p>请输入您的帐号: <Input   onChange={e=>this.setState({account:e.target.value})} /></p>
+			<p>请输入您的密码: <Input   onChange={e=>this.setState({password:e.target.value})} /></p>
 
 
 			<Button type="primary"   onClick={this.login} style={{marginLeft:'10%',marginTop:'5%'}}>登录</Button>

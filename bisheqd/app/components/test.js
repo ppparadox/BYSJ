@@ -23,7 +23,6 @@ class Test extends Component{
 	render(){
 		return(
 			<div style={{position:'absolute',Left:'0',Right:'0',margin:'auto',width:'100%',height:'100%'}}>
-		
 			<HashRouter history={hashHistory}>
 			<div>
 			<Route  exact path="/" component={Loginform} />
