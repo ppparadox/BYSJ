@@ -9,6 +9,7 @@ import Registerform from './registerform.js'
 import Menu from './menu.js'
 import Busadd from './busadd.js'
 import Detail from './detail.js'
+import Busquery from './busquery.js'
 
 
 class Test extends Component{
@@ -30,6 +31,7 @@ class Test extends Component{
 			<Route  path="/menu" component={Menu} />
 			<Route  path="/busadd" component={Busadd} />
 			<Route  path="/detail" component={Detail} />
+			<Route  path="/busquery" component={Busquery} />
 			</div>
 			</HashRouter>
 			</div>

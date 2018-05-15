@@ -19,6 +19,7 @@ class Menu extends Component{
 
 		this.delete=this.delete.bind(this);
 		this.update=this.update.bind(this);
+		this.querydetail=this.querydetail.bind(this);
 
 	}
 
@@ -40,13 +41,19 @@ class Menu extends Component{
 		.then(dataa => {	
 			alert(dataa);
 			this.update();
-
-
 		});
+	}
 
 
+	querydetail(e){
+		const routeid=e.target.getAttribute("data-dd")
+		this.props.history.push({pathname:'./busquery',state:{routeid:routeid}});
 
 	}
+
+
+
+
 
 	update(){
 		let URL = 'http://127.0.0.1:8089/queryall';
@@ -91,14 +98,14 @@ class Menu extends Component{
 			<h1 style={{textAlign:'center'}}>公交路线管理系统后台菜单</h1>
 
 
-			<Link to='/busadd'>
-			<Button type="primary"  style={{marginLeft:'0%',marginTop:'5%',visibility:this.state.visibility}} >公交路线添加</Button>
-			</Link>
+			<Button type="primary"  style={{marginLeft:'0%',marginTop:'5%',visibility:this.state.visibility}} >
+			<Link to='/busadd'>公交路线添加</Link></Button>
+			
 
-			<Link to='/'>
-			<Button type="danger"  style={{marginLeft:'70%',marginTop:'5%',visibility:this.state.visibility}} >返回登录</Button>
-			</Link>
+			
+			<Button type="danger"  style={{marginLeft:'70%',marginTop:'5%',visibility:this.state.visibility}} ><Link to='/'>返回登录	</Link></Button>
 		
+
 			</form>
 
 			<List
@@ -109,6 +116,8 @@ class Menu extends Component{
 			dataSource={this.state.data}
 			renderItem={item => (<List.Item>
 				<Button type="danger"  onClick={this.delete} data-dd={item.routeid} style={{visibility:this.state.visibility}} >删除</Button>
+
+				<Button type="primary"  onClick={this.querydetail} data-dd={item.routeid}  >明细</Button>
 
 				★★★公交路线号：
 				<h3>{item.routeid}</h3> 

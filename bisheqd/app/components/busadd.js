@@ -116,7 +116,7 @@ class Busadd extends Component{
 			<div style={{position:'absolute',marginLeft:'28%',marginTop:'5%',width:'40%'}}>
 			<form  action="http://127.0.0.1:8089" method="get">
 			<h1>公交路线注册界面</h1>
-			<p>公交路线号: <Input   onChange={e=>this.setState({routeid:e.target.value})} /></p>
+			<p>公交路线号: <Input   onChange={e=>this.setState({routeid:e.target.value})}  /></p>
 			<p>总站点数量: <Input   onChange={e=>this.setState({stopnum:e.target.value})} /></p>
 			<p>总站点预计耗时: <Input   onChange={e=>this.setState({timecost:e.target.value})} /></p>
 			<p>早班时间: <Input   onChange={e=>this.setState({first_time:e.target.value})} /></p>

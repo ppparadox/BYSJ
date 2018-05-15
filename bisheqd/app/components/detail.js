@@ -13,9 +13,11 @@ class Detail extends Component{
 		this.state={
 			routeid:'6383',
 			index:'1',
-			placename:'3',
-			price:'3',
-			data:[]
+			placename:'',
+			price:'',
+			data:[],
+			updatedisabled:true
+
 
 		};
 
@@ -23,7 +25,8 @@ class Detail extends Component{
 		this.complete=this.complete.bind(this);
 		this.update=this.update.bind(this);
 		this.deletedetail=this.deletedetail.bind(this);
-
+		
+	
 
 	}
 
@@ -71,7 +74,7 @@ class Detail extends Component{
 			if(dindex<=this.props.location.state.stopnum)
 			{
 				dindex++;
-				this.setState({index:dindex,placename:''});
+				this.setState({index:dindex,});
 				this.update();
 
 			}
@@ -123,15 +126,15 @@ class Detail extends Component{
 		});
 
 
-
 	}
 
+	
 
+
+	
 
 
 	componentDidMount(){
-
-		
 		this.setState({routeid:this.props.location.state.routeid});
 	}
 
@@ -139,9 +142,9 @@ class Detail extends Component{
 
 	render(){
 		return(
-			<div style={{position:'absolute',marginLeft:'28%',marginTop:'5%',width:'40%'}}>
+			<div style={{position:'absolute',marginLeft:'15%',marginTop:'5%',width:'70%'}}>
 			<form  action="http://127.0.0.1:8089" method="get">
-			<h1>公交详情站点添加</h1>
+			<h1 style={{textAlign:'center'}}>公交详情站点添加模块</h1>
 			<p>路线编号: <Input  disabled="true"  onChange={e=>this.setState({routeid:e.target.value})} value={this.state.routeid} /></p>
 			<p>站点位置: <Input   disabled="true" onChange={e=>this.setState({index:e.target.value})} value={this.state.index} /></p>
 			<p>站点名称: <Input   onChange={e=>this.setState({placename:e.target.value})}  /></p>
@@ -151,6 +154,7 @@ class Detail extends Component{
 			<Link to='/'>
 			<Button type="danger"  style={{marginLeft:'10%',marginTop:'5%',visibility:this.state.visibility}} >返回登录</Button>
 			</Link>
+		
 			</form>
 			<List
 			size="small"
@@ -158,14 +162,13 @@ class Detail extends Component{
 			bordered
 			dataSource={this.state.data}
 			renderItem={item => (<List.Item>
-				<Button type="danger"  onClick={this.deletedetail} data-dd={item.stopindex} style={{visibility:this.state.visibility,marginRight:'20px'}} >删除</Button>
-				★★★位置索引：
-				<h3>{item.stopindex}</h3> 
-				★★★站点名称：
-				<h3>{item.placename}</h3>
-				★★★本站价格：
-				<h3>{item.price}元 </h3>
-
+				<Button type="danger"  onClick={this.deletedetail} data-dd={item.stopindex} style={{visibility:this.state.visibility,marginLeft:'20px'}} >删除</Button>
+				<div style={{width:'35%'}}>★位置索引：</div>
+				<Input  value={item.stopindex} disabled={true}  />
+				：<div style={{width:'35%'}}>★站点名称</div>
+				<Input value={item.placename} disabled={this.state.updatedisabled}   />
+				<div style={{width:'35%'}} >★本站价格：</div>
+				<Input value={item.price} disabled={this.state.updatedisabled}  /> 
 				</List.Item>)
 		}
 		/>

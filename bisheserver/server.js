@@ -224,9 +224,10 @@ app.post('/querydetail', function (req, res) {
     database : 'bysj'
   });
 
-
+console.log('详细站点访问');
 
 var querysql3444="select * from busplace where routeid='"+req.body.routeid+"'";
+console.log(querysql3444);
  sss(querysql3444,function (err,vals,fields) {
 if(err){
             return;
@@ -266,8 +267,7 @@ console.log('123');
 
 })
 
-// 全公交详情删除查询模块
-
+// 全公交详情删除模块
 app.post('/deletedetail', function (req, res) {
    var connection = mysql.createConnection({
     host     : 'localhost',
@@ -291,7 +291,63 @@ var querysql2= "UPDATE busplace  SET stopindex=stopindex-1  where stopindex>"+st
 })
 
 
+// 详细站点名称变更模块
+app.post('/updatedetailname', function (req, res) {
+   var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'wjm',
+    password : '111111',
+    database : 'bysj'
+  });
 
+console.log('详情地点变更访问');
+var routeid=req.body.routeid;
+var stopindex=req.body.index;
+var name=req.body.name;
+
+
+var querysql1= "UPDATE busplace  SET placename='"+name+"'  where stopindex='"+stopindex+"'and routeid='"+routeid+"'";
+
+ sss(querysql1,function (err,vals,fields) {
+
+  if(err){
+    console.log(err)
+            return;
+          }
+          else
+  res.send('更新成功')});
+
+})
+
+
+
+// 详细站点价格变更模块
+app.post('/updatedetailprice', function (req, res) {
+   var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'wjm',
+    password : '111111',
+    database : 'bysj'
+  });
+
+console.log('详情地点变更访问');
+var routeid=req.body.routeid;
+var stopindex=req.body.index;
+var price=req.body.price;
+
+
+var querysql1= "UPDATE busplace  SET price='"+price+"'  where stopindex='"+stopindex+"'and routeid='"+routeid+"'";
+
+ sss(querysql1,function (err,vals,fields) {
+
+  if(err){
+    console.log(err)
+            return;
+          }
+          else
+  res.send('更新成功')});
+
+})
 
 
 
