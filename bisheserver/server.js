@@ -139,17 +139,17 @@ app.post('/adddetail', function (req, res) {
     database : 'bysj'
   });
 
-console.log('add');
+  console.log('add');
   var values = [req.body.routeid,req.body.placename,req.body.index,req.body.price];
 
   var insertsql5 = "INSERT INTO BUSPLACE(routeid,placename,stopindex,price) VALUES (?,?,?,?)";
 
-        sss(insertsql5,values,function (err, rows, fields) {
-          if(err){
-            return;
-          }
-          else res.send('公交站点添加成功');
-        });
+  sss(insertsql5,values,function (err, rows, fields) {
+    if(err){
+      return;
+    }
+    else res.send('公交站点添加成功');
+  });
 
 
 })
@@ -159,27 +159,27 @@ console.log('add');
 // 公交路线查询模块
 
 app.post('/routeidquery', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
 
 
-const querysql03="select placename,price,stopindex from busplace where routeid='"+req.body.routeid+"'";
+ const querysql03="select placename,price,stopindex from busplace where routeid='"+req.body.routeid+"'";
 
  sss(querysql03,function (err,vals,fields) {
-if(err){
-            return;
-          }
-          else 
-          {
-            var dataa=JSON.stringify(vals);
-          console.log(dataa);
-          res.send(dataa);
+  if(err){
+    return;
+  }
+  else 
+  {
+    var dataa=JSON.stringify(vals);
+    console.log(dataa);
+    res.send(dataa);
 
-          }
+  }
 });
 
 })
@@ -188,27 +188,27 @@ if(err){
 // 全公交路线查询模块
 
 app.get('/queryall', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
 
 
-var querysql333="select * from busroute ";
-console.log('123333');
+ var querysql333="select * from busroute ";
+ console.log('123333');
 
  sss(querysql333,function (err,vals,fields) {
-if(err){
-            return;
-          }
-          else 
-          {
-            var dataa=JSON.stringify(vals);
-          console.log(dataa);
-          res.json(dataa);
-          }
+  if(err){
+    return;
+  }
+  else 
+  {
+    var dataa=JSON.stringify(vals);
+    console.log(dataa);
+    res.json(dataa);
+  }
 });
 
 })
@@ -217,27 +217,27 @@ if(err){
 // 详细站点查询模块
 
 app.post('/querydetail', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
 
-console.log('详细站点访问');
+ console.log('详细站点访问');
 
-var querysql3444="select * from busplace where routeid='"+req.body.routeid+"'";
-console.log(querysql3444);
+ var querysql3444="select * from busplace where routeid='"+req.body.routeid+"'";
+ console.log(querysql3444);
  sss(querysql3444,function (err,vals,fields) {
-if(err){
-            return;
-          }
-          else 
-          {
-            var dataa=JSON.stringify(vals);
+  if(err){
+    return;
+  }
+  else 
+  {
+    var dataa=JSON.stringify(vals);
     
-          res.json(dataa);
-          }
+    res.json(dataa);
+  }
 });
 
 })
@@ -247,75 +247,75 @@ if(err){
 // 全公交删除查询模块
 
 app.post('/delete', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
-
-console.log('路线删除访问');
-
-var querysql1="delete from busroute where routeid='"+req.body.routeid+"'";
-var querysql2="delete from busplace where routeid='"+req.body.routeid+"'";
-console.log('123');
- sss(querysql1,function (err,vals,fields) {
- sss(querysql2,function (err,vals,fields) { 
-  res.send('删除成功')});
-
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
 });
+
+ console.log('路线删除访问');
+
+ var querysql1="delete from busroute where routeid='"+req.body.routeid+"'";
+ var querysql2="delete from busplace where routeid='"+req.body.routeid+"'";
+ console.log('123');
+ sss(querysql1,function (err,vals,fields) {
+   sss(querysql2,function (err,vals,fields) { 
+    res.send('删除成功')});
+
+ });
 
 })
 
 // 全公交详情删除模块
 app.post('/deletedetail', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
 
-console.log('详情删除访问');
-var routeid=req.body.routeid;
-var stopindex=req.body.index;
-var querysql1="delete from busplace where routeid='"+routeid+"'and stopindex='"+stopindex+"'";
-var querysql2= "UPDATE busplace  SET stopindex=stopindex-1  where stopindex>"+stopindex+"";
+ console.log('详情删除访问');
+ var routeid=req.body.routeid;
+ var stopindex=req.body.index;
+ var querysql1="delete from busplace where routeid='"+routeid+"'and stopindex='"+stopindex+"'";
+ var querysql2= "UPDATE busplace  SET stopindex=stopindex-1  where stopindex>"+stopindex+"";
 
  sss(querysql1,function (err,vals,fields) {
- sss(querysql2,function (err,vals,fields) { 
-  res.send('删除详情站点成功')});
+   sss(querysql2,function (err,vals,fields) { 
+    res.send('删除详情站点成功')});
 
-});
+ });
 
 })
 
 
 // 详细站点名称变更模块
 app.post('/updatedetailname', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
 
-console.log('详情地点变更访问');
-var routeid=req.body.routeid;
-var stopindex=req.body.index;
-var name=req.body.name;
+ console.log('详情地点变更访问');
+ var routeid=req.body.routeid;
+ var stopindex=req.body.index;
+ var name=req.body.name;
 
 
-var querysql1= "UPDATE busplace  SET placename='"+name+"'  where stopindex='"+stopindex+"'and routeid='"+routeid+"'";
+ var querysql1= "UPDATE busplace  SET placename='"+name+"'  where stopindex='"+stopindex+"'and routeid='"+routeid+"'";
 
  sss(querysql1,function (err,vals,fields) {
 
   if(err){
     console.log(err)
-            return;
-          }
-          else
-  res.send('更新成功')});
+    return;
+  }
+  else
+    res.send('更新成功')});
 
 })
 
@@ -323,37 +323,159 @@ var querysql1= "UPDATE busplace  SET placename='"+name+"'  where stopindex='"+st
 
 // 详细站点价格变更模块
 app.post('/updatedetailprice', function (req, res) {
-   var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'wjm',
-    password : '111111',
-    database : 'bysj'
-  });
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
 
-console.log('详情地点变更访问');
-var routeid=req.body.routeid;
-var stopindex=req.body.index;
-var price=req.body.price;
+ console.log('详情地点变更访问');
+ var routeid=req.body.routeid;
+ var stopindex=req.body.index;
+ var price=req.body.price;
 
 
-var querysql1= "UPDATE busplace  SET price='"+price+"'  where stopindex='"+stopindex+"'and routeid='"+routeid+"'";
+ var querysql1= "UPDATE busplace  SET price='"+price+"'  where stopindex='"+stopindex+"'and routeid='"+routeid+"'";
 
  sss(querysql1,function (err,vals,fields) {
 
   if(err){
     console.log(err)
-            return;
-          }
-          else
-  res.send('更新成功')});
+    return;
+  }
+  else
+    res.send('更新成功')});
 
 })
 
+//是数组去重算法
+function unique(array){ 
+  var n = {}, r = [], len = array.length, val, type; 
+  for (var i = 0; i < array.length; i++) { 
+    val = array[i]; 
+    type = typeof val; 
+    if (!n[val]) { 
+      n[val] = [type]; 
+      r.push(val); 
+    } else if (n[val].indexOf(type) < 0) { 
+      n[val].push(type); 
+      r.push(val); 
+    } 
+  } 
+
+  return r; 
+}
+
+
+
+// App端换乘指引模块
+app.post('/guide', function (req, res) {
+ var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'wjm',
+  password : '111111',
+  database : 'bysj'
+});
+
+ console.log('换乘指引请求');
+ const qd=req.body.data.chufa;
+ const zd=req.body.data.zhongdian;
+
+ var querysql1= "select a.routeid,a.price  from busplace a,busplace b where a.placename='"+qd+"' and b.placename='"+zd+"' and a.routeid=b.routeid";
+ sss(querysql1,function (err,vals,fields) {
+  if(vals.length!==0)
+  {
+    console.log(vals instanceof Array);
+    const dataa=JSON.stringify(vals);
+    res.json(dataa);
+  }
+  else{
+
+   var DIRECT_A=[];
+   var DIRECT_B=[];
+   var ALLSTOP_A=[];
+   var ALLSTOP_B=[];
+   var ALLSTOP_C=[];
+   var queryrouteqd="select routeid from busplace where placename='"+qd+"'";
+   var queryroutezd="select routeid from busplace where placename='"+zd+"'";
+
+   sss(queryrouteqd,function (err,vals,fields) { 
+     for(i=0;i<=vals.length-1;i++)
+     {
+      DIRECT_A[i]=vals[i].routeid;
+    }
+
+    for(i=0;i<=DIRECT_A.length-1;i++)
+    { 
+      let queryaa="select placename from busplace where routeid='"+DIRECT_A[i]+"'";
+      sss(queryaa,function (err,vals,fields) { 
+
+        ALLSTOP_A=ALLSTOP_A.concat(vals);  
+
+
+      });
+    }
+  });
+
+   sss(queryroutezd,function (err,vals,fields) { 
+
+    for(i=0;i<=vals.length-1;i++)
+    {
+      DIRECT_B[i]=vals[i].routeid;
+    }
+
+
+    for(i=0;i<=DIRECT_B.length-1;i++)
+    {
+
+      let querybb="select placename from busplace where routeid='"+DIRECT_B[i]+"'";
+      sss(querybb,function (err,vals,fields) {
+       ALLSTOP_B=ALLSTOP_B.concat(vals); 
+       
+     });
+
+    }
+
+
+  });
+
+   setTimeout(function(){
+
+
+    var aa=[];
+    var bb=[];
+    for(var i = 0;i < ALLSTOP_A.length; i++) {
+      aa[i]=ALLSTOP_A[i].placename;
+    }
+    for(var i = 0;i < ALLSTOP_B.length; i++) {
+      bb[i]=ALLSTOP_B[i].placename;
+    }
+    aa=unique(aa)
+    bb=unique(bb)
+    let aal = new Set(aa);
+    let bbl = new Set(bb); 
+    let mdl = new Set([...aal].filter(x => bbl.has(x)));
+    let midarr = [...mdl];
+    
+    console.log("可换乘站点为："+midarr);
+    console.log("前段直达路线为："+DIRECT_A);
+    console.log("后段直达路线为:"+DIRECT_B);
+  },300); 
+
+
+
+ }
+
+
+})
+
+});
 
 
 
 var server = app.listen(8089, function () {
-  var host = '127.0.0.1'
+  var host = '10.2.10.32'
   var port = server.address().port 
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
 })
